@@ -3,6 +3,10 @@ import { getGroup } from "./functions.js"
 
 export const InviteForm = (props) => {
   const { groupId } = props.match.params;
-  const group = getGroup(groupId);
-  return <div>Invite Form: {groupId}</div>;
+  return <div>
+    Invite Form: {groupId}
+    <ul>
+      {getGroup(groupId).map(p => <li>{p}</li>)}
+    </ul>
+  </div>;
 };

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Route, BrowserRouter } from "react-router-dom";
-import GroupFinder from "./group-finder";
+import { GroupFinder } from "./group-finder";
 import { Header } from "./header";
 import { InviteForm } from "./invite-form";
 

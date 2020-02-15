@@ -1,31 +1,24 @@
 import * as React from "react";
 import { hasGroup } from "./functions";
+import { Link } from "react-router-dom";
 
-class GroupFinder extends React.Component {
-  constructor(props){
-    super(props);
-    this.state ={
-      isGroupIdValid : false
-    }
-  }
+export class GroupFinder extends React.Component {
+  state = { groupId : "" };
 
-  onChange(){
-    const {isGroupIdValid} = this.state;
-    const groupId = document.getElementById("groupIdInput").value;
-    const isValid = hasGroup(groupId);
-    if (isValid || (!isValid && isGroupIdValid)){
-      this.setState({isGroupIdValid: isValid});
-    }
+  onChange = (e) => {
+    this.setState({groupId: e.target.value});
   }
 
   render(){
-    const {isGroupIdValid} = this.state;
+    const {groupId} = this.state;
     return <div>
-    Group Finder
-    <input id="groupIdInput" onChange={e => this.onChange(e)}></input>
-    <button disabled={!isGroupIdValid}>Next</button>
+      Group Finder
+      <input onChange={this.onChange} />
+      { hasGroup(groupId)
+        ? <Link to={`/${groupId}`} className="find-button">Next</Link>
+        : <button disabled className="find-button">Next</button>
+      }
     </div>;
   }
 
 };
-export default GroupFinder;
